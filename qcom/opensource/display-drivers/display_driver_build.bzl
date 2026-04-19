@@ -78,7 +78,7 @@ def define_target_variant_modules(target, variant, registry, modules, config_opt
     kernel_build_hdr = "{}_{}".format(target, variant)
     kernel_build_label = select({
         "//build/kernel/kleaf:microxr_kernel_build_true": "//:target_kernel_build",
-        "//build/kernel/kleaf:microxr_kernel_build_false": "//msm-kernel:{}".format(kernel_build_hdr)
+        "//build/kernel/kleaf:microxr_kernel_build_false": "//vendor/qcom/kernel:{}".format(kernel_build_hdr)
     })
 
     if lunch_target != None:
@@ -91,7 +91,7 @@ def define_target_variant_modules(target, variant, registry, modules, config_opt
     build_print = lambda message : print("{}: {}".format(kernel_build, message))
     formatter = lambda s : s.replace("%b", kernel_build).replace("%t", target)
     formatter_hdr = lambda s : s.replace("%b", kernel_build_hdr).replace("%t", target)
-    headers = ["//msm-kernel:all_headers"] + registry.hdrs
+    headers = ["//vendor/qcom/kernel:all_headers"] + registry.hdrs
     all_module_rules = []
 
     for module in modules:

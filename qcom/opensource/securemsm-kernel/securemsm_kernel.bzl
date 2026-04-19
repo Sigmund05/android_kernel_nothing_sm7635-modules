@@ -82,11 +82,11 @@ def define_target_variant_modules(target, variant, modules, extra_options = [], 
             name = rule_name,
             kernel_build = select({
         "//build/kernel/kleaf:microxr_kernel_build_true": "//:target_kernel_build",
-        "//build/kernel/kleaf:microxr_kernel_build_false": "//msm-kernel:{}".format(kernel_build_variant)
+        "//build/kernel/kleaf:microxr_kernel_build_false": "//vendor/qcom/kernel:{}".format(kernel_build_variant)
     }),
             srcs = module_srcs,
             out = "{}.ko".format(module["name"]),
-            deps = ["//msm-kernel:all_headers"] + [_replace_formatting_codes(target, variant, dep) for dep in module["deps"]],
+            deps = ["//vendor/qcom/kernel:all_headers"] + [_replace_formatting_codes(target, variant, dep) for dep in module["deps"]],
             hdrs = module["hdrs"],
             local_defines = target_local_defines,
             copts = module["copts"],
@@ -113,7 +113,7 @@ def define_target_variant_modules(target, variant, modules, extra_options = [], 
         name = "{}_modules_install".format(kernel_build_variant),
         kernel_build = select({
         "//build/kernel/kleaf:microxr_kernel_build_true": "//:target_kernel_build",
-        "//build/kernel/kleaf:microxr_kernel_build_false": "//msm-kernel:{}".format(kernel_build_variant)
+        "//build/kernel/kleaf:microxr_kernel_build_false": "//vendor/qcom/kernel:{}".format(kernel_build_variant)
     }),
         kernel_modules = module_rules,
     )

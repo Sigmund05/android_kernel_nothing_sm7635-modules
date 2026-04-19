@@ -58,7 +58,7 @@ register_bt_modules(
     srcs = ["btpower.c"],
     config_deps = {
         "CONFIG_BT_HW_SECURE_DISABLE": [
-            "//vendor/qcom/opensource/securemsm-kernel:%b_smcinvoke_dlkm",
+            "//vendor/qcom/sm8650-modules/qcom/opensource/securemsm-kernel:%b_smcinvoke_dlkm",
         ]
     },
 )
@@ -129,7 +129,7 @@ register_bt_modules(
    ],
    deps = [
       ":%b_btpower",":%b_btfmcodec", ":btfmcodec_headers",
-      "//vendor/qcom/opensource/audio-kernel:%b_audio",
-      "//vendor/qcom/opensource/audio-kernel:audio_headers"
+      "//vendor/qcom/sm8650-modules/qcom/opensource/audio-kernel:%b_audio",
+      "//vendor/qcom/sm8650-modules/qcom/opensource/audio-kernel:audio_headers"
    ],
 )

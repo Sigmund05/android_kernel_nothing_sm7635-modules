@@ -35,12 +35,12 @@ register_eva_module(
     ],
     config_deps = {
        "TARGET_SYNX_ENABLE": [
-           "//vendor/qcom/opensource/synx-kernel:synx_headers",
-           "//vendor/qcom/opensource/synx-kernel:%b_modules",
-           "//vendor/qcom/opensource/mmrm-driver:%b_mmrm_driver"
+           "//vendor/qcom/sm8650-modules/qcom/opensource/synx-kernel:synx_headers",
+           "//vendor/qcom/sm8650-modules/qcom/opensource/synx-kernel:%b_modules",
+           "//vendor/qcom/sm8650-modules/qcom/opensource/mmrm-driver:%b_mmrm_driver"
         ],
         "TARGET_DSP_ENABLE": [
-             "//vendor/qcom/opensource/dsp-kernel:%b_frpc-adsprpc"
+             "//vendor/qcom/sm8650-modules/qcom/opensource/dsp-kernel:%b_frpc-adsprpc"
         ],
     },
 )

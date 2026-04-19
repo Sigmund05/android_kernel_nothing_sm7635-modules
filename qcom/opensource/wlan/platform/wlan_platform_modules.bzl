@@ -4,7 +4,7 @@ load(
     "ddk_module",
     "kernel_module_group",
 )
-load("//msm-kernel:target_variants.bzl", "get_all_variants")
+load("//vendor/qcom/kernel:target_variants.bzl", "get_all_variants")
 
 _default_module_enablement_list = [
     "cnss_nl",
@@ -84,11 +84,11 @@ def _define_modules_for_target_variant(target, variant):
     if target == "neo-la":
         kernel_build = select({
             "//build/kernel/kleaf:microxr_kernel_build_true": "//:target_kernel_build",
-            "//conditions:default": "//msm-kernel:{}".format(tv),
+            "//conditions:default": "//vendor/qcom/kernel:{}".format(tv),
         })
     else:
         kernel_build = select({
-            "//conditions:default": "//msm-kernel:{}".format(tv),
+            "//conditions:default": "//vendor/qcom/kernel:{}".format(tv),
         })
 
     cnss2_enabled = 0
@@ -103,9 +103,9 @@ def _define_modules_for_target_variant(target, variant):
         icnss2_enabled = 1
 
     if target != "sa510m":
-        kernel_header = "//msm-kernel:all_headers"
+        kernel_header = "//vendor/qcom/kernel:all_headers"
     else:
-        kernel_header = "//msm-kernel:all_headers_arm"
+        kernel_header = "//vendor/qcom/kernel:all_headers_arm"
 
     print("tv=", tv)
     if cnss2_enabled:
@@ -121,7 +121,7 @@ def _define_modules_for_target_variant(target, variant):
             ":wlan-platform-headers",
         ]
         if target != "anorak" and target != "neo-la" and target != "seraph" and target != "sdxkova" and target != "sa510m":
-            deps.append("//vendor/qcom/opensource/securemsm-kernel:{}_smcinvoke_dlkm".format(tv))
+            deps.append("//vendor/qcom/sm8650-modules/qcom/opensource/securemsm-kernel:{}_smcinvoke_dlkm".format(tv))
 
         ddk_module(
             name = "{}_cnss2".format(tv),
@@ -241,7 +241,7 @@ def _define_modules_for_target_variant(target, variant):
         ":wlan-platform-headers",
     ]
     if target == "sun":
-        cnss_utils_dep_list = cnss_utils_dep_list + ["//vendor/qcom/opensource/data-kernel/drivers/smem-mailbox:{}_smem_mailbox".format(tv),]
+        cnss_utils_dep_list = cnss_utils_dep_list + ["//vendor/qcom/sm8650-modules/qcom/opensource/data-kernel/drivers/smem-mailbox:{}_smem_mailbox".format(tv),]
     if target == "sdxkova":
         tgt = "target-aarch64_cortex-a53_musl"
         board = "sdx85"

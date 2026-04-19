@@ -71,7 +71,7 @@ def _define_target_modules(target, variant, registry, modules, product = None, c
 
     enabled_modules = _get_enabled_module_objs(registry, modules)
     options = _combine_target_module_options(enabled_modules, config_options)
-    headers = ["//msm-kernel:all_headers"] + registry.hdrs
+    headers = ["//vendor/qcom/kernel:all_headers"] + registry.hdrs
     submodule_rules = []
 
     for module in enabled_modules:
@@ -94,7 +94,7 @@ def _define_target_modules(target, variant, registry, modules, product = None, c
 
     ddk_module(
         name = "{}_audio".format(kernel_build),
-        kernel_build = "//msm-kernel:{}_{}".format(target, variant),
+        kernel_build = "//vendor/qcom/kernel:{}_{}".format(target, variant),
         deps = submodule_rules
     )
 

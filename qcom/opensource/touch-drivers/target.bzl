@@ -1,6 +1,6 @@
 load(":touch_modules.bzl", "touch_driver_modules")
 load(":touch_modules_build.bzl", "define_target_variant_modules")
-load("//msm-kernel:target_variants.bzl", "get_all_la_variants", "get_all_le_variants", "get_all_lxc_variants")
+load("//vendor/qcom/kernel:target_variants.bzl", "get_all_la_variants", "get_all_le_variants", "get_all_lxc_variants")
 
 def define_pineapple(t,v):
     define_target_variant_modules(

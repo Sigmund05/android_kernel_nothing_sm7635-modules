@@ -1,4 +1,4 @@
-load("//msm-kernel:target_variants.bzl", "get_all_variants")
+load("//vendor/qcom/kernel:target_variants.bzl", "get_all_variants")
 load("//build/kernel/kleaf:kernel.bzl",
      "ddk_module",
      "kernel_module_group",
@@ -60,7 +60,7 @@ def define_target_variant_modules(target, variant, modules, config_options = [])
     kernel_build = "{}_{}".format(target, variant)
     kernel_build_label = select({
                 "//build/kernel/kleaf:microxr_kernel_build_true": "//:target_kernel_build",
-                "//build/kernel/kleaf:microxr_kernel_build_false": "//msm-kernel:{}".format(kernel_build)
+                "//build/kernel/kleaf:microxr_kernel_build_false": "//vendor/qcom/kernel:{}".format(kernel_build)
     })
     modules = [bt_modules.get(module_name) for module_name in modules]
     options = _get_build_options(modules, config_options)
@@ -76,7 +76,7 @@ def define_target_variant_modules(target, variant, modules, config_options = [])
             kernel_build = kernel_build_label,
             srcs = module_srcs,
             out = "{}.ko".format(module.name),
-            deps = ["//msm-kernel:all_headers"] + _get_module_deps(module, options, formatter),
+            deps = ["//vendor/qcom/kernel:all_headers"] + _get_module_deps(module, options, formatter),
             includes = ["include"],
             local_defines = options.keys(),
             visibility = ["//visibility:public"],
