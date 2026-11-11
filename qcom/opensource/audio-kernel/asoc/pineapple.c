@@ -135,7 +135,7 @@ static int msm_int_wsa883x_2_init(struct snd_soc_pcm_runtime *);
 static struct wcd_mbhc_config wcd_mbhc_cfg = {
 	.read_fw_bin = false,
 	.calibration = NULL,
-	.detect_extn_cable = true,
+	.detect_extn_cable = false,
 	.mono_stero_detection = false,
 	.swap_gnd_mic = NULL,
 	.hs_ext_micbias = true,
