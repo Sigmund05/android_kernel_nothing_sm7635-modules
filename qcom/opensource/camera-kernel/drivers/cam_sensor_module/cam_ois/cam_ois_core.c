@@ -882,8 +882,13 @@ static int write_ois_fw(uint8_t *fw_data, enum cam_endianness_type endianness,
 
 	for (wcnt = 0; wcnt < (fw_param->fw_size/data_type); wcnt += len_per_write) {
 		for (cnt = 0; cnt < len_per_write; cnt++, ptr += data_type) {
-			setting.reg_setting[cnt].reg_addr =
-				fw_param->fw_reg_addr + wcnt + cnt;
+			/* Burst writes restart at fw_reg_addr for every chunk */
+			if (i2c_operation == CAM_SENSOR_I2C_WRITE_BURST)
+				setting.reg_setting[cnt].reg_addr =
+					fw_param->fw_reg_addr;
+			else
+				setting.reg_setting[cnt].reg_addr =
+					fw_param->fw_reg_addr + wcnt + cnt;
 			/* Big */
 			if (endianness == CAM_ENDIANNESS_BIG) {
 				setting.reg_setting[cnt].reg_data =
