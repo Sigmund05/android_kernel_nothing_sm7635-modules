@@ -1499,7 +1499,7 @@ static int cam_ois_pkt_parse(struct cam_ois_ctrl_t *o_ctrl, void *arg)
 			goto end;
 		}
 
-		rc = cam_sensor_i2c_read_data(
+		rc = cam_sensor_i2c_read_data_packed(
 			&i2c_read_settings,
 			&o_ctrl->io_master_info);
 		if (rc < 0) {
