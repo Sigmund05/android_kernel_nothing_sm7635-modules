@@ -82,10 +82,7 @@ def _define_modules_for_target_variant(target, variant):
     tv = "{}_{}".format(target, variant)
 
     if target == "neo-la":
-        kernel_build = select({
-            "//build/kernel/kleaf:microxr_kernel_build_true": "//:target_kernel_build",
-            "//conditions:default": "//vendor/qcom/kernel:{}".format(tv),
-        })
+        kernel_build = "//vendor/qcom/kernel:{}".format(tv)
     else:
         kernel_build = select({
             "//conditions:default": "//vendor/qcom/kernel:{}".format(tv),

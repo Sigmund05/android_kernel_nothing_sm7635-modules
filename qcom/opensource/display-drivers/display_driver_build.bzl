@@ -76,10 +76,7 @@ def display_module_entry(hdrs = []):
 def define_target_variant_modules(target, variant, registry, modules, config_options = [], lunch_target=None):
 
     kernel_build_hdr = "{}_{}".format(target, variant)
-    kernel_build_label = select({
-        "//build/kernel/kleaf:microxr_kernel_build_true": "//:target_kernel_build",
-        "//build/kernel/kleaf:microxr_kernel_build_false": "//vendor/qcom/kernel:{}".format(kernel_build_hdr)
-    })
+    kernel_build_label = "//vendor/qcom/kernel:{}".format(kernel_build_hdr)
 
     if lunch_target != None:
         kernel_build = "{}_{}_{}".format(target, variant, lunch_target)
